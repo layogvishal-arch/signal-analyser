@@ -2,9 +2,13 @@
 // feed back into the system.
 //
 // Design notes:
-// - Each confirmed email is stored as a { vector, weight } pair. The weight
+// - Each confirmed email is stored as { emailId, weight }. The weight
 //   reflects how informative the signal was (explicit approval = stronger
-//   than implicit, override = strongest).
+//   than implicit, override = strongest). The vector is NOT stored here —
+//   it's resolved at scoring time from the static embeddings dictionary
+//   (embeddings.json), since that data is already in memory and committed
+//   with the repo. This keeps the persisted store small enough to fit in
+//   localStorage's ~5MB budget no matter how many days run.
 // - Memory is capped at 50 entries per bucket (FIFO). In production you'd
 //   use time-decayed weights or a sliding window; the cap keeps localStorage
 //   tidy for the demo while demonstrating the same product thinking.
@@ -17,7 +21,6 @@ export const MEMORY_CAP = 50;
 
 export interface SignalEntry {
   emailId: string;    // so historical overrides can replace an old entry
-  vector: number[];
   weight: number;
 }
 
@@ -55,10 +58,8 @@ export function applySignal(
   memory: SignalMemory,
   bucket: BucketId,
   emailId: string,
-  vector: number[],
   weight: number
 ): SignalMemory {
-  // Clone shallow then deep-clone the affected arrays.
   const next: SignalMemory = { ...memory };
 
   // Remove any prior entry for this email across all buckets. This handles
@@ -74,7 +75,7 @@ export function applySignal(
   // which the pass above already did.
   if (weight <= 0) return next;
 
-  const entry: SignalEntry = { emailId, vector, weight };
+  const entry: SignalEntry = { emailId, weight };
   const existing = next[bucket] ?? [];
   const combined = [...existing, entry];
 

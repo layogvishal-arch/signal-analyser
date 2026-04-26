@@ -2,7 +2,7 @@
 
 A support email categorization system that uses **embedding similarity** (not LLM classification) to bucket incoming emails, and silently improves day-over-day by learning from what agents do — **no model retraining**.
 
-> **Live demo:** _coming soon_ — will be added after Vercel deploy.
+> **Live demo:** [signal-analyser.vercel.app](https://signal-analyser.vercel.app)
 
 ---
 

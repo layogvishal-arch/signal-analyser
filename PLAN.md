@@ -1,6 +1,6 @@
 # Signal-Adaptive Email Organizer — Implementation Plan
 
-**Overall Progress:** `92%` — build complete, pending your API key to run embeddings + deploy.
+**Overall Progress:** `100%` — shipped: [signal-analyser.vercel.app](https://signal-analyser.vercel.app)
 
 ## TLDR
 A portfolio demo that categorizes support emails using embedding similarity (not LLM classification) and silently improves accuracy day-over-day by learning from agent overrides. Pure Next.js frontend, pre-computed OpenAI embeddings, Zustand + localStorage for state. No backend. Goal: showcase AI PM thinking — embeddings as intelligence, signal loops, confidence-tiered UX.
@@ -80,9 +80,11 @@ A portfolio demo that categorizes support emails using embedding similarity (not
   - [x] 🟩 Empty / setup-needed states
   - [x] 🟩 Reset simulation button in header
   - [x] 🟩 Typecheck + `next build` pass cleanly
-  - [ ] 🟥 **Run `npm run generate`** ← needs your API key
-  - [ ] 🟥 **Push to GitHub + deploy to Vercel** ← after generate works
-  - [ ] 🟥 Add live demo URL to README
+  - [x] 🟩 Ran `npm run generate` (908 emails embedded)
+  - [x] 🟩 Pushed to GitHub: [layogvishal-arch/signal-analyser](https://github.com/layogvishal-arch/signal-analyser)
+  - [x] 🟩 Deployed to Vercel: [signal-analyser.vercel.app](https://signal-analyser.vercel.app)
+  - [x] 🟩 localStorage quota fix landed (slim signal entries + migration)
+  - [x] 🟩 Live demo URL added to README
 
 ---
 

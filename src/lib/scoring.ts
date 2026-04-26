@@ -20,6 +20,11 @@ import { cosineSimilarity } from "./similarity";
 import type { BucketId, Bucket } from "./buckets";
 import type { SignalEntry, SignalMemory } from "./signals";
 
+// Embedding lookup map: emailId → vector. Passed through the scoring stack
+// so signal entries can stay slim (just emailId + weight in localStorage)
+// and resolve their vector at scoring time.
+export type EmailVectors = Record<string, number[]>;
+
 export interface BucketScore {
   bucketId: BucketId;
   finalScore: number;
@@ -39,13 +44,19 @@ export function computeSignalWeight(n: number): number {
 
 function weightedAverageSimilarity(
   emailVec: number[],
-  entries: SignalEntry[]
+  entries: SignalEntry[],
+  emailVectors: EmailVectors
 ): number {
   if (entries.length === 0) return 0;
   let num = 0;
   let den = 0;
   for (const e of entries) {
-    const sim = cosineSimilarity(emailVec, e.vector);
+    // Resolve the entry's vector from the static dictionary. If for some
+    // reason the email isn't in the map (e.g. bank regenerated under
+    // a stored signal), skip it gracefully rather than crashing.
+    const vec = emailVectors[e.emailId];
+    if (!vec) continue;
+    const sim = cosineSimilarity(emailVec, vec);
     num += e.weight * sim;
     den += e.weight;
   }
@@ -57,13 +68,14 @@ export function scoreBucket(
   emailVec: number[],
   bucket: Bucket,
   seedVec: number[],
-  memory: SignalMemory
+  memory: SignalMemory,
+  emailVectors: EmailVectors
 ): BucketScore {
   const seedSim = cosineSimilarity(emailVec, seedVec);
 
   const entries = memory[bucket.id] ?? [];
   const signalCount = entries.length;
-  const rawSignalSim = weightedAverageSimilarity(emailVec, entries);
+  const rawSignalSim = weightedAverageSimilarity(emailVec, entries, emailVectors);
   // Clamp to 0 — signals only help a bucket, they never hurt it.
   const signalSim = Math.max(0, rawSignalSim);
 
@@ -95,10 +107,11 @@ export function scoreEmail(
   emailVec: number[],
   buckets: Bucket[],
   seeds: Record<BucketId, number[]>,
-  memory: SignalMemory
+  memory: SignalMemory,
+  emailVectors: EmailVectors
 ): ScoredEmail {
   const scores = buckets.map((b) =>
-    scoreBucket(emailVec, b, seeds[b.id], memory)
+    scoreBucket(emailVec, b, seeds[b.id], memory, emailVectors)
   );
   // Sort desc by final score.
   const sorted = [...scores].sort((a, b) => b.finalScore - a.finalScore);

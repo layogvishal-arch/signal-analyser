@@ -119,12 +119,10 @@ export const useSimulation = create<SimulationState>()(
           const updatedEmails = d.emails.map((e) => {
             if (e.status !== "pending") return e;
             if (e.initialTier === "auto" && e.assignedBucket) {
-              const vec = embeddings.emails[e.id];
               nextMemory = applySignal(
                 nextMemory,
                 e.assignedBucket,
                 e.id,
-                vec,
                 SIGNAL_WEIGHTS.implicitApprove
               );
               return { ...e, status: "auto-left" as const };
@@ -158,12 +156,10 @@ export const useSimulation = create<SimulationState>()(
         const email = day?.emails.find((e) => e.id === emailId);
         if (!email || !email.assignedBucket) return;
 
-        const vec = embeddings.emails[emailId];
         const nextMemory = applySignal(
           memory,
           email.assignedBucket,
           emailId,
-          vec,
           SIGNAL_WEIGHTS.explicitApprove
         );
 
@@ -181,7 +177,6 @@ export const useSimulation = create<SimulationState>()(
         const email = day?.emails.find((e) => e.id === emailId);
         if (!email) return;
 
-        const vec = embeddings.emails[emailId];
         const oldBucket = email.assignedBucket;
 
         let nextMemory = memory;
@@ -191,7 +186,6 @@ export const useSimulation = create<SimulationState>()(
             nextMemory,
             oldBucket,
             emailId,
-            vec,
             SIGNAL_WEIGHTS.overrideWrong
           );
         }
@@ -200,7 +194,6 @@ export const useSimulation = create<SimulationState>()(
           nextMemory,
           newBucket,
           emailId,
-          vec,
           SIGNAL_WEIGHTS.overrideCorrect
         );
 
@@ -219,12 +212,10 @@ export const useSimulation = create<SimulationState>()(
         const email = day?.emails.find((e) => e.id === emailId);
         if (!email) return;
 
-        const vec = embeddings.emails[emailId];
         const nextMemory = applySignal(
           memory,
           bucket,
           emailId,
-          vec,
           SIGNAL_WEIGHTS.manualCategorize
         );
 
@@ -253,6 +244,32 @@ export const useSimulation = create<SimulationState>()(
     {
       name: "sae-org-state",
       storage: createJSONStorage(() => localStorage),
+      version: 2,
+      // Migration from v1 (vector-bearing signal entries) → v2 (slim entries).
+      // Strips the heavy 1536-dim vector field from each memory entry,
+      // letting the existing days[] array and signal counts ride forward
+      // unchanged. Vectors get resolved from embeddings.json at scoring time.
+      migrate: (persisted: unknown, version: number) => {
+        if (!persisted || typeof persisted !== "object") return persisted;
+        if (version >= 2) return persisted;
+        // Snapshot old state to console once, in case the user wants a
+        // manual backup before the migration writes back.
+        try {
+          // eslint-disable-next-line no-console
+          console.info(
+            "[sae-org-state] migrating localStorage v" + version + " → v2 (stripping signal vectors)"
+          );
+        } catch {}
+        const state = persisted as { memory?: Record<string, Array<{ emailId: string; weight: number; vector?: number[] }>> };
+        if (state.memory) {
+          for (const bucketId of Object.keys(state.memory)) {
+            state.memory[bucketId] = state.memory[bucketId]
+              .filter((e) => e && typeof e.emailId === "string")
+              .map((e) => ({ emailId: e.emailId, weight: e.weight }));
+          }
+        }
+        return state;
+      },
       // Don't persist pmMode — it's session-scoped.
       partialize: (state) => ({
         days: state.days,

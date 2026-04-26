@@ -97,7 +97,13 @@ export function generateDay(input: GenerateDayInput): EmailDay {
 
   const emails: ProcessedEmail[] = sampled.map((e) => {
     const vec = input.embeddings.emails[e.id];
-    const score = scoreEmail(vec, BUCKETS, input.embeddings.seeds, input.memory);
+    const score = scoreEmail(
+      vec,
+      BUCKETS,
+      input.embeddings.seeds,
+      input.memory,
+      input.embeddings.emails
+    );
     const tier = classifyConfidence(score.winnerScore);
 
     return {
