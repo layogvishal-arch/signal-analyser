@@ -387,6 +387,56 @@
     }
     #contact .hero-links { justify-content: center; }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--serif);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--accent-light);
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      padding-top: 1rem;
+    }
+    .testimonial-attr {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .testimonial-title {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -418,6 +468,7 @@
       <li><a href="#work">Work</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a href="#background">Background</a></li>
+      <li><a href="#recommendations">Recommendations</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -752,6 +803,65 @@
             <span class="skill-tag">Vibe coding</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RECOMMENDATIONS ── -->
+  <section id="recommendations">
+    <div class="container">
+      <p class="section-label">Recommendations</p>
+      <h2>What colleagues say.</h2>
+      <p class="section-intro">
+        From the people who worked with me at ServiceNow — across product, engineering, and leadership.
+      </p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            What impressed me most was the tangible impact he delivered in such a compressed timeframe.
+            Through genuine collaboration and a bias toward action, he drove outcomes that moved the needle
+            on product goals well before anyone would have expected. His ability to connect dots across teams
+            and translate complexity into clear direction made him a force multiplier for everyone around him.
+            Where ambiguity and shifting priorities can stall even experienced PMs, Vishal leaned in with
+            resilience and professionalism — keeping his eye on what mattered. I'd welcome the chance to
+            work with him again in a heartbeat.
+          </p>
+          <div class="testimonial-attr">
+            <span class="testimonial-name">Eduardo Chiocconi</span>
+            <span class="testimonial-title">VP of Product · ServiceNow</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            Vishal exceeded the initial expectations defined at the start of his engagement and has proven
+            capable of operating independently within a complex product environment. He consistently sought
+            clarity and asked the right questions until fully confident in his understanding of the problem
+            space — reducing ambiguity and supporting informed decision-making. He also demonstrated
+            constructive assertiveness when direction required adjustment, while maintaining professionalism
+            and respect, earning credibility within the team.
+          </p>
+          <div class="testimonial-attr">
+            <span class="testimonial-name">Michal Franek</span>
+            <span class="testimonial-title">Product Leader · ServiceNow</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            Vishal has been one of very few diligent PMs that I have worked with in the recent past.
+            He has the ability to break down complex business asks into engineering-level aspects,
+            helping the team comprehend what is to be built and the purpose of it.
+            He would be a great technical PM to work with, especially in the new world of
+            AI-native product development.
+          </p>
+          <div class="testimonial-attr">
+            <span class="testimonial-name">Murali Raj Kamal</span>
+            <span class="testimonial-title">Engineering Leader · ServiceNow</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
