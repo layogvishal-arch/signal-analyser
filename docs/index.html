@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vishal Goyal — Product Manager</title>
+  <meta name="description" content="Product Manager with a track record of shipping things users love and founders can point to on a P&L." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #FDFAF6;
+      --card:         #F5EFE6;
+      --text:         #1C1714;
+      --muted:        #7A6B62;
+      --accent:       #B8683A;
+      --accent-light: #F0E4D5;
+      --border:       #E5D8CC;
+      --dark:         #1C1714;
+      --serif:        'Lora', Georgia, serif;
+      --sans:         'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 250, 246, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    nav .nav-links a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section { padding: 5rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 7rem 0 5rem;
+      border-top: none;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+    .hero-bio {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #9e5a30; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── CASE STUDIES ── */
+    .case-study {
+      margin-bottom: 4rem;
+    }
+    .case-study:last-child { margin-bottom: 0; }
+
+    .case-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .case-number {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-light);
+      border-radius: 4px;
+      padding: 0.3rem 0.55rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .case-meta {
+      flex: 1;
+    }
+    .case-company {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .case-title {
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .case-body {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .case-block {
+      margin-bottom: 1.5rem;
+    }
+    .case-block:last-child { margin-bottom: 0; }
+
+    .case-block-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .case-block p {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .metrics-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .metric {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 0.9rem 1.25rem;
+      flex: 1;
+      min-width: 120px;
+    }
+    .metric-value {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #FDFAF6;
+    }
+    .metric-label {
+      font-size: 0.75rem;
+      color: rgba(253,250,246,0.6);
+      margin-top: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .learned-block {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .learned-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .learned-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    /* ── APPROACH ── */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .approach-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .approach-card-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .approach-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── BACKGROUND ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .timeline-period {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding-top: 0.05rem;
+      line-height: 1.4;
+    }
+    .timeline-content-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .timeline-content-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .skill-group-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .skill-tag {
+      font-size: 0.775rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.55rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+    #contact h2 { margin-bottom: 0.75rem; }
+    #contact .section-intro {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+    }
+    #contact .hero-links { justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 0; }
+      #hero { padding: 4.5rem 0 3.5rem; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .timeline-period { font-size: 0.75rem; }
+      .case-body { padding: 1.5rem; }
+      .metrics-row { flex-direction: column; }
+      .metric { min-width: unset; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Vishal Goyal</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="container">
+      <span class="hero-label">Product Manager</span>
+      <h1>Vishal Goyal</h1>
+      <p class="tagline">"I build products users love and founders can point&nbsp;to&nbsp;on&nbsp;a&nbsp;P&amp;L."</p>
+      <p class="hero-bio">
+        I've spent the last few years turning scrappy tools into platforms people actually use —
+        and making sure they generate revenue while doing it. I think in first principles,
+        work closely with engineers, and don't stop at shipping.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="mailto:vishallayog@gmail.com">vishallayog@gmail.com</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/vishalgoyal" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK ── -->
+  <section id="work">
+    <div class="container">
+      <p class="section-label">Selected Work</p>
+      <h2>Three stories worth reading.</h2>
+      <p class="section-intro">
+        These aren't resume bullets — they're the decisions, the wrong turns, and the moments
+        that shaped how I think about product.
+      </p>
+
+      <!-- Case Study 1 -->
+      <div class="case-study">
+        <div class="case-header">
+          <span class="case-number">01</span>
+          <div class="case-meta">
+            <p class="case-company">HireQuotient &nbsp;·&nbsp; 2023–2025</p>
+            <h3 class="case-title">The infrastructure bet that unlocked 200+ customers</h3>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-block">
+            <p class="case-block-label">The problem</p>
+            <p>
+              We had 9 paying customers and $50K ARR, and the product was fundamentally unscalable.
+              To power LinkedIn search, we were buying disposable trial accounts at $40 each — good
+              for about 5 searches before LinkedIn's automation detection flagged them. We were one
+              ban wave away from having no product. Every search was a roll of the dice.
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">The search &amp; the decision</p>
+            <p>
+              I spent months evaluating over a hundred third-party data solutions. Almost all of
+              them required handing over our own LinkedIn accounts as collateral — a non-starter
+              legally and operationally. I held the line on finding a real API-based integration.
+              Eventually I found one: $3,600 for 250,000 searches. The math was obvious.
+              We went from ~5 searches per $40 to 250,000 searches per $3,600 — a 500x improvement
+              in unit economics. I also found a backup provider by digging through Reddit PM communities,
+              where I connected with a YC founder and became one of their first 10 customers.
+              That vendor now powers one of the largest B2B live-data signals in the market.
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">What it unlocked</p>
+            <p>
+              Stable search infrastructure turned a browser extension into a platform.
+              With reliable data, we could build AI-powered vetting, automated outreach,
+              ATS integrations, and workflow automation. Revenue scaled to $1.2M ARR across
+              200+ customers. In close to two years, the platform had just 6 hours of total downtime.
+            </p>
+          </div>
+          <div class="metrics-row">
+            <div class="metric">
+              <div class="metric-value">$1.2M</div>
+              <div class="metric-label">ARR driven across product lines</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">500×</div>
+              <div class="metric-label">improvement in search unit economics</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">200+</div>
+              <div class="metric-label">customers on a stable platform</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">6 hrs</div>
+              <div class="metric-label">total downtime in ~2 years</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2 -->
+      <div class="case-study">
+        <div class="case-header">
+          <span class="case-number">02</span>
+          <div class="case-meta">
+            <p class="case-company">HireQuotient &nbsp;·&nbsp; 2023–2025</p>
+            <h3 class="case-title">The feature that worked — and then the harder job of making people use it</h3>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-block">
+            <p class="case-block-label">The problem</p>
+            <p>
+              A customer asked for something that sounded simple: they wanted to stop juggling
+              Excel sheets for tracking contacts, relationships, next steps, and notes. They wanted
+              it all inside the product. I designed and shipped a mini-CRM collaboration module —
+              and considered it done. A few months later, 80%+ of customers weren't using it.
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">What I got wrong (and how I fixed it)</p>
+            <p>
+              I had assumed the CSM team would handle adoption. That was my mistake.
+              I embedded a Hotjar survey directly in the product to ask users if they knew
+              this feature existed. Most didn't. So I changed my approach: I joined weekly
+              customer calls myself, walked through the feature live, connected integrations
+              they cared about (Fireflies notetakers, one-click enrichments), and started
+              writing product newsletters about it. Not delegating — doing.
+              Session time went from 30 to 120 minutes. The module became the backbone
+              for EasyGrowth, our lead-scoring product.
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">The lesson I carry everywhere now</p>
+            <p>
+              You can build the best feature in the world. If people don't know it exists,
+              it doesn't exist. Adoption is part of the product. A PM's job doesn't end at launch.
+            </p>
+          </div>
+          <div class="metrics-row">
+            <div class="metric">
+              <div class="metric-value">93%</div>
+              <div class="metric-label">of customers using the module at end of tenure</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">30→120</div>
+              <div class="metric-label">minutes avg. session time</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$50K</div>
+              <div class="metric-label">incremental quarterly revenue as an add-on</div>
+            </div>
+          </div>
+          <div class="learned-block">
+            <span class="learned-icon">↳</span>
+            <p class="learned-text">
+              This was my first real lesson in product: I shipped something good and it still failed —
+              because I handed off to CSM and moved on. Joining those calls myself, writing those
+              newsletters, embedding the survey to listen — that's the only reason this feature survived.
+              Now I think about adoption strategy the same day I think about the feature.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3 -->
+      <div class="case-study">
+        <div class="case-header">
+          <span class="case-number">03</span>
+          <div class="case-meta">
+            <p class="case-company">ServiceNow &nbsp;·&nbsp; 2025–Present</p>
+            <h3 class="case-title">Turning raw process signals into a foundation for autonomous AI agents</h3>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-block">
+            <p class="case-block-label">The context</p>
+            <p>
+              Task Mining at ServiceNow captures raw OS-level signals — every click, keystroke,
+              and application interaction — to identify how people actually do their work.
+              The company was going AI-native, and the question was: can we connect these raw
+              signals to ServiceNow's automation products to create autonomous agents that can
+              actually perform those tasks?
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">The hard part</p>
+            <p>
+              Raw captured signals aren't instructions. A sequence of clicks tells you
+              <em>what</em> happened, not <em>why</em> or <em>how</em> to replicate it
+              intelligently. We needed to translate this signal noise into structured,
+              step-by-step agent blueprints — including business purpose, task context,
+              and enough detail for an AI agent to execute reliably without human input.
+              I personally tested what signals were being captured at the OS level, identified
+              where the gaps were, and worked with the team on using LLMs to bridge the
+              translation layer.
+            </p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">What shipped</p>
+            <p>
+              The Automation Center–Task Mining integration now auto-generates agent skeletons
+              and detailed instructions using LLMs. What previously took a domain expert
+              20–40 minutes to author manually now takes under 2 minutes — with 90% output
+              accuracy on v1. This was showcased at ServiceNow Knowledge 2026, where the VP
+              was impressed that a baseline integration of this scope was completed in such
+              a short timeframe. In Q2 2026, the team is now building on this foundation
+              to power agents with tools that complete the full end-to-end workflow autonomously.
+            </p>
+          </div>
+          <div class="metrics-row">
+            <div class="metric">
+              <div class="metric-value">90%</div>
+              <div class="metric-label">accuracy on LLM-generated agent instructions (v1)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">&lt;2 min</div>
+              <div class="metric-label">vs. 20–40 min manual authoring</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">Knowledge<br>2026</div>
+              <div class="metric-label">showcased at ServiceNow's flagship conference</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── APPROACH ── -->
+  <section id="approach">
+    <div class="container">
+      <p class="section-label">How I Think</p>
+      <h2>Product is a discipline, not a job title.</h2>
+      <p class="section-intro">
+        A few things I've come to believe from building across recruiting tech, AI automation,
+        and enterprise SaaS — and gotten wrong at least once before I believed them.
+      </p>
+      <div class="approach-grid">
+        <div class="approach-card">
+          <p class="approach-card-title">Adoption is part of the product</p>
+          <p>If a feature isn't used, it doesn't exist. I treat GTM and adoption as product
+          problems, not hand-offs. That means writing newsletters, joining customer calls,
+          and embedding surveys — not just shipping to Jira.</p>
+        </div>
+        <div class="approach-card">
+          <p class="approach-card-title">Platform economics beat feature velocity</p>
+          <p>The most impactful thing I've shipped wasn't a feature — it was an infrastructure
+          decision that changed our unit economics by 500×. I think about what unlocks the
+          next 10 things, not just the next one.</p>
+        </div>
+        <div class="approach-card">
+          <p class="approach-card-title">Metrics are evidence, not decoration</p>
+          <p>Every number I put on a slide, I've lived. I know what caused them to move,
+          what I tried that didn't work, and what I'd do differently. I'm skeptical of
+          metrics I can't explain.</p>
+        </div>
+        <div class="approach-card">
+          <p class="approach-card-title">Technical fluency changes the conversation</p>
+          <p>I've written code, debugged production issues, and tested OS-level signals
+          in a Task Mining product. I don't need engineers to translate for me —
+          and that changes how fast we move.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BACKGROUND ── -->
+  <section id="background">
+    <div class="container">
+      <p class="section-label">Background</p>
+      <h2>Where I've been.</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <p class="timeline-period">Sept 2025 – Present</p>
+          <div>
+            <p class="timeline-content-title">Senior Product Manager — ServiceNow</p>
+            <p class="timeline-content-sub">Task Mining · Automation Center · Agentic AI</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-period">Nov 2023 – Aug 2025</p>
+          <div>
+            <p class="timeline-content-title">Product Manager — HireQuotient</p>
+            <p class="timeline-content-sub">Search infrastructure · Outreach · Analytics · Platform</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-period">Oct 2022 – Jun 2023</p>
+          <div>
+            <p class="timeline-content-title">Software Engineer — Labra.io (Ibexlabs)</p>
+            <p class="timeline-content-sub">Azure OAuth2 · API integrations</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-period">Aug 2019 – Sep 2021</p>
+          <div>
+            <p class="timeline-content-title">Associate Analyst — Deloitte Consulting USI</p>
+            <p class="timeline-content-sub">Production ops · Incident management · UAT</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-grid" style="margin-top: 3rem;">
+        <div>
+          <p class="skill-group-title">Product</p>
+          <div class="skill-tags">
+            <span class="skill-tag">0→1</span>
+            <span class="skill-tag">Roadmap</span>
+            <span class="skill-tag">PRD</span>
+            <span class="skill-tag">User Research</span>
+            <span class="skill-tag">GTM</span>
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">Wireframing</span>
+          </div>
+        </div>
+        <div>
+          <p class="skill-group-title">Data &amp; Tools</p>
+          <div class="skill-tags">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Mixpanel</span>
+            <span class="skill-tag">Hotjar</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">Intercom</span>
+          </div>
+        </div>
+        <div>
+          <p class="skill-group-title">Technical</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">APIs</span>
+            <span class="skill-tag">JSON</span>
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">Vibe coding</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Get in touch</p>
+      <h2>Let's talk product.</h2>
+      <p class="section-intro">
+        If you're building something and need someone who thinks in first principles,
+        ships fast, and doesn't stop at launch — I'd like to hear what you're working on.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="mailto:vishallayog@gmail.com">vishallayog@gmail.com</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/vishalgoyal" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Vishal Goyal &nbsp;·&nbsp; Product Manager &nbsp;·&nbsp; Bengaluru, India</p>
+  </footer>
+
+</body>
+</html>
