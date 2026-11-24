@@ -551,7 +551,7 @@
   <ul class="nav-links">
     <li><a href="#thinking">How I Think</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#product-thinking">AI &amp; Technical</a></li>
+
     <li><a href="#experience">Experience</a></li>
     <li><a href="#recommendations">Recommendations</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -588,23 +588,24 @@
 <section id="thinking">
   <div class="container">
     <p class="label">How I Think</p>
-    <h2>Five things that shape how I work.</h2>
+    <h2>Product is a discipline, not a job title.</h2>
     <p class="section-intro">
-      These aren't principles I wrote for a portfolio. They're patterns I've noticed in
-      myself across every product I've built.
+      A few things I've come to believe from building across recruiting tech, AI automation,
+      and enterprise SaaS — and gotten wrong at least once before I believed them.
     </p>
     <div class="pillars">
 
       <div class="pillar">
         <span class="pillar-num">01</span>
         <div class="pillar-content">
-          <p class="pillar-title">I think in ecosystems, not features.</p>
+          <p class="pillar-title">Understand the full workflow before writing a requirement.</p>
           <p class="pillar-body">
-            A product doesn't exist in isolation. Before thinking about screens or functionality,
-            I want to understand: who are all the actors? What happens before and after a user
-            interacts with our product? Where does data originate, how does it move, and where
-            does it get transformed? What can be simplified, automated, or improved?
-            I'm interested in the entire workflow, not just the feature being built.
+            I start with the actors, the data, the dependencies — not the feature.
+            What happens before a user touches the product? What are they doing in between?
+            What happens after? I look at the ecosystem: who's involved, what they need,
+            how data flows, what already exists. Features that look simple often have
+            invisible complexity; features that look complex often have a simple lever.
+            You only find that by mapping the whole thing.
           </p>
         </div>
       </div>
@@ -612,14 +613,12 @@
       <div class="pillar">
         <span class="pillar-num">02</span>
         <div class="pillar-content">
-          <p class="pillar-title">I care about what NOT to build.</p>
+          <p class="pillar-title">Business goals and customer value have to be true at the same time.</p>
           <p class="pillar-body">
-            In an era where new AI capabilities emerge constantly, it's easy to build something
-            because it's possible. The harder questions: What problem are we actually solving?
-            Is this a meaningful customer problem? Are we removing friction or adding complexity?
-            Does AI genuinely improve the outcome? What's the simplest solution that creates real value?
-            I've killed features that looked impressive and held the line on decisions others wanted
-            to rush.
+            The most common trap: optimising a user workflow while ignoring what that workflow
+            needs to deliver commercially. The best decisions I've made work in both directions —
+            they remove real friction for the user and move the metric that matters for the business.
+            If a feature only does one of those, I keep asking why before committing to it.
           </p>
         </div>
       </div>
@@ -627,14 +626,14 @@
       <div class="pillar">
         <span class="pillar-num">03</span>
         <div class="pillar-content">
-          <p class="pillar-title">I like going deep.</p>
+          <p class="pillar-title">Use technology to augment — not to add complexity.</p>
           <p class="pillar-body">
-            I investigate beyond what's immediately required. This means understanding data models
-            and relationships, API contracts, system dependencies, LLM behavior, and user analytics.
-            The goal isn't technical complexity for its own sake — it's making better decisions and
-            finding opportunities that remain invisible to those who only read the surface-level brief.
-            When I joined Task Mining at ServiceNow, I personally tested OS-level signal capture
-            before I wrote a single product requirement.
+            I've worked on LLM-powered products since 2023. The question I keep coming back to
+            isn't "what can we build with AI?" — it's "does this actually help someone do
+            something better?" I look at input quality, context, instructions, and failure
+            patterns before recommending model changes. The measure: did it remove repetitive
+            work, prevent an error, or surface something previously missed?
+            If not, the feature doesn't justify its complexity.
           </p>
         </div>
       </div>
@@ -642,25 +641,13 @@
       <div class="pillar">
         <span class="pillar-num">04</span>
         <div class="pillar-content">
-          <p class="pillar-title">I am hands-on.</p>
+          <p class="pillar-title">Go deep enough to find what others miss.</p>
           <p class="pillar-body">
-            I explore products myself. I speak directly with customers. I test assumptions quickly
-            using prototypes and AI coding tools. I don't see PM work as writing requirements and
-            waiting for engineering. I work alongside design and engineering, iterating based on
-            what I learn from real use — not from meeting notes.
-          </p>
-        </div>
-      </div>
-
-      <div class="pillar">
-        <span class="pillar-num">05</span>
-        <div class="pillar-content">
-          <p class="pillar-title">I am comfortable with parallel ownership.</p>
-          <p class="pillar-body">
-            While one initiative moves toward delivery, I investigate the next opportunity, work
-            through an integration dependency, or think about the next strategic bet.
-            I operate well with ambiguity, ownership, and no established playbook. I don't need
-            everything to be defined before I start working.
+            I test products personally. I read data models, API contracts, system dependencies.
+            Not to be technical for its own sake — but because the most interesting opportunities
+            are usually invisible until you've gone past the surface-level brief.
+            The infrastructure decision that changed our unit economics by 500× didn't come from
+            a requirement doc — it came from going deep on a problem everyone else had accepted.
           </p>
         </div>
       </div>
@@ -673,7 +660,7 @@
 <section id="work">
   <div class="container">
     <p class="label">Selected Work</p>
-    <h2>Four case studies.</h2>
+    <h2>Five case studies.</h2>
     <p class="section-intro">
       Not achievement cards. These are the actual problems, the decisions I made,
       what I considered and rejected, and what happened.
@@ -1009,74 +996,6 @@
         </div>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- ─── PRODUCT THINKING ─── -->
-<section id="product-thinking">
-  <div class="container">
-    <p class="label">Product Thinking</p>
-    <h2>How I approach AI and technical depth.</h2>
-    <p class="section-intro">
-      Two areas where I think differently from most PMs:
-      how I work with LLM products, and how I build technical understanding
-      without being an engineer.
-    </p>
-
-    <!-- AI approach -->
-    <div class="ai-approach">
-      <p class="ai-approach-title">My approach to AI product management</p>
-      <p>
-        I've worked on LLM-powered products since 2023. My working assumption
-        is that LLMs are <em>probabilistic systems</em>, not deterministic software.
-        The most common mistake I've seen is treating poor model output as a fine-tuning problem
-        before investigating the actual causes.
-      </p>
-      <p>
-        Before jumping to model changes, I look at:
-        <em>input quality</em> — what's actually being fed to the model;
-        <em>context availability</em> — does it have what it needs to generate a useful response;
-        <em>instructions</em> — are they specific, unambiguous, with examples;
-        <em>evaluation</em> — how are we actually measuring quality;
-        <em>failure patterns</em> — where does it break, and why.
-      </p>
-      <p>
-        The measure of success I care about: did the AI help someone make a better decision?
-        Did it remove repetitive work? Did it prevent an error? Did it identify something
-        previously missed? If the answer to all of those is no, the AI feature doesn't
-        justify its complexity.
-      </p>
-    </div>
-
-    <!-- Technical depth grid -->
-    <div class="pt-grid" style="margin-top: 2.5rem;">
-      <div class="pt-card">
-        <p class="pt-card-title">Integrations &amp; APIs</p>
-        <p>REST APIs, authentication flows, data mapping between systems, synchronisation logic,
-        error handling, and third-party integration tradeoffs. I understand why a webhook-based
-        integration behaves differently from a polling one — and when each is appropriate.</p>
-      </div>
-      <div class="pt-card">
-        <p class="pt-card-title">Data &amp; Systems</p>
-        <p>Data models, entity relationships, cross-product data flows, transformation logic,
-        and system dependencies. When I work on an integration, I trace what happens to data
-        end to end — not just at the point of connection.</p>
-      </div>
-      <div class="pt-card">
-        <p class="pt-card-title">AI &amp; LLMs</p>
-        <p>Prompt design, context management, evaluation frameworks, human-in-the-loop workflows,
-        and agentic automation. I understand precision vs recall tradeoffs in AI output
-        and how to instrument for both.</p>
-      </div>
-      <div class="pt-card">
-        <p class="pt-card-title">Product Execution</p>
-        <p>Discovery, roadmapping, prioritisation frameworks, PRDs, UAT, analytics instrumentation,
-        and adoption tracking. I treat each of these as a connected discipline, not a checklist.</p>
-      </div>
-    </div>
-
-
 
   </div>
 </section>
